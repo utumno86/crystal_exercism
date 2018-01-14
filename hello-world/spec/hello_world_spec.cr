@@ -6,11 +6,11 @@ describe "HelloWorld" do
     HelloWorld.hello.should eq("Hello, World!")
   end
 
-  pending "sample name" do
+  describe "sample name" do
     HelloWorld.hello("Alice").should eq("Hello, Alice!")
   end
 
-  pending "other sample name" do
+  describe "other sample name" do
     HelloWorld.hello("Bob").should eq("Hello, Bob!")
   end
 end

@@ -47,7 +47,6 @@ Be sure to submit the source file in the `src` directory when submitting your so
 $ exercism submit src/hello_world.cr
 ```
 
-
 ## Setup
 
 Follow the setup instructions for Crystal here:
