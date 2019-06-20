@@ -2,29 +2,47 @@ require "spec"
 require "../src/*"
 
 describe "Hamming" do
-  describe "#compute" do
-    it "computes no difference for identical single nucleotide strands" do
-      Hamming.compute("A", "A").should eq 0
-    end
+  it "empty strands" do
+    Hamming.distance("", "").should eq(0)
+  end
 
-    it "computes a distance for single nucleotide strands" do
-      Hamming.compute("A", "G").should eq 1
-    end
+  it "single letter identical strands" do
+    Hamming.distance("A", "A").should eq(0)
+  end
 
-    it "computes a distance for small strands" do
-      Hamming.compute("AG", "CT").should eq 2
-    end
+  it "single letter different strands" do
+    Hamming.distance("G", "T").should eq(1)
+  end
 
-    it "computes a distance for medium strands" do
-      Hamming.compute("GGACG", "GGTCG").should eq 1
-    end
+  it "long identical strands" do
+    Hamming.distance("GGACTGAAATCTG", "GGACTGAAATCTG").should eq(0)
+  end
 
-    it "computes a distance for large strands" do
-      Hamming.compute("GGACGGATTCTG", "AGGACGGATTCT").should eq 9
-    end
+  it "long different strands" do
+    Hamming.distance("GGACGGATTCTG", "AGGACGGATTCT").should eq(9)
+  end
 
-    it "raises an exception when strands aren't of equal length" do
-      expect_raises(ArgumentError) { Hamming.compute("GCC", "A") }
+  it "disallow first strand longer" do
+    expect_raises(ArgumentError) do
+      Hamming.distance("AATG", "AAA")
+    end
+  end
+
+  it "disallow second strand longer" do
+    expect_raises(ArgumentError) do
+      Hamming.distance("ATA", "AGTG")
+    end
+  end
+
+  it "disallow left empty strand" do
+    expect_raises(ArgumentError) do
+      Hamming.distance("", "G")
+    end
+  end
+
+  it "disallow right empty strand" do
+    expect_raises(ArgumentError) do
+      Hamming.distance("G", "")
     end
   end
 end
