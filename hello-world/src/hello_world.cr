@@ -1,5 +1,5 @@
 module HelloWorld
-  def self.hello(name : String = "World")
-    "Hello, #{name}!"
+  def self.hello()
+    "Hello, World!"
   end
 end
